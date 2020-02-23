@@ -40,6 +40,8 @@ public class WardrobeFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);//去掉标题
+        toolbar.inflateMenu(R.menu.toolbar);
     }
 
     @Override
@@ -50,7 +52,7 @@ public class WardrobeFragment extends BaseFragment {
 
     @Override
     protected int attachLayoutRes() {
-        return R.layout.wardrobe;
+        return 0;
     }
 
     @Override
@@ -60,7 +62,6 @@ public class WardrobeFragment extends BaseFragment {
     //Toolbar
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        toolbar.getMenu().clear();
         inflater.inflate(R.menu.toolbar, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -96,13 +97,7 @@ public class WardrobeFragment extends BaseFragment {
             R.drawable.home_bg
     };
     //存放图片的标题
-    private String[] titles = new String[]{
-            "轮播1",
-            "轮播2",
-            "轮播3",
-            "轮播4",
-            "轮播5"
-    };
+    private String[] titles = new String[]{"轮播1", "轮播2", "轮播3", "轮播4", "轮播5"};
     private TextView title;
     private ViewPagerAdapter adapter;
     private ScheduledExecutorService scheduledExecutorService;
@@ -110,13 +105,13 @@ public class WardrobeFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        mView=inflater.inflate(R.layout.wardrobe, null);
+        mRootView = inflater.inflate(R.layout.wardrobe, container, false);
         setView();
-        return mView;
+        //在onCreateView中inflater只能返回一个，所以多个布局管理器要和成一个返回，否则没有返回的将无法显示
+        return mRootView;
     }
     private void setView(){
-        mViewPaper = mView.findViewById(R.id.vp);
+        mViewPaper = mRootView.findViewById(R.id.vp);
 
         //显示的图片
         images = new ArrayList<ImageView>();
@@ -127,21 +122,19 @@ public class WardrobeFragment extends BaseFragment {
         }
         //显示的小点
         dots = new ArrayList<View>();
-        dots.add(mView.findViewById(R.id.dot_0));
-        dots.add(mView.findViewById(R.id.dot_1));
-        dots.add(mView.findViewById(R.id.dot_2));
-        dots.add(mView.findViewById(R.id.dot_3));
-        dots.add(mView.findViewById(R.id.dot_4));
+        dots.add(mRootView.findViewById(R.id.dot_0));
+        dots.add(mRootView.findViewById(R.id.dot_1));
+        dots.add(mRootView.findViewById(R.id.dot_2));
+        dots.add(mRootView.findViewById(R.id.dot_3));
+        dots.add(mRootView.findViewById(R.id.dot_4));
 
-        title = mView.findViewById(R.id.title);
+        title = mRootView.findViewById(R.id.title);
         title.setText(titles[0]);
 
         adapter = new ViewPagerAdapter();
         mViewPaper.setAdapter(adapter);
 
         mViewPaper.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-
             @Override
             public void onPageSelected(int position) {
                 title.setText(titles[position]);
@@ -179,7 +172,6 @@ public class WardrobeFragment extends BaseFragment {
 
         @Override
         public void destroyItem(ViewGroup view, int position, Object object) {
-            // TODO Auto-generated method stub
 //          super.destroyItem(container, position, object);
 //          view.removeView(view.getChildAt(position));
 //          view.removeViewAt(position);
@@ -188,7 +180,6 @@ public class WardrobeFragment extends BaseFragment {
 
         @Override
         public Object instantiateItem(ViewGroup view, int position) {
-            // TODO Auto-generated method stub
             view.addView(images.get(position));
             return images.get(position);
         }
@@ -200,7 +191,6 @@ public class WardrobeFragment extends BaseFragment {
      */
     @Override
     public void onStart() {
-        // TODO Auto-generated method stub
         super.onStart();
         scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
         scheduledExecutorService.scheduleWithFixedDelay(
@@ -235,12 +225,10 @@ public class WardrobeFragment extends BaseFragment {
     };
     @Override
     public void onStop() {
-        // TODO Auto-generated method stub
         super.onStop();
         if(scheduledExecutorService != null){
             scheduledExecutorService.shutdown();
             scheduledExecutorService = null;
         }
     }
-
 }

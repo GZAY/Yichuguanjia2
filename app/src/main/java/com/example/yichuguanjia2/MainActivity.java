@@ -38,10 +38,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private Fragment[] mFragments;  //数组 存储Fragment
     private int currentIndex;   //当前Fragment的下标
 
-    List<Province> provinceList;
-    ListView listView;
-    ArrayAdapter<Province> provinceAdapter;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
