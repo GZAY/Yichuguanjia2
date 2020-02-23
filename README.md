@@ -5,7 +5,8 @@
 > app的几个fragment中自定义了一个ToolBar
 > 其中只有一个MainActivity活动，大部分操作在fragment中进行，所以遇到很多问题
 
-![image](https://github.com/GZAY/Yichuguanjia2/blob/master/Picture/img1.png)
+![image](https://github.com/GZAY/Yichuguanjia2/blob/master/Picture/img12.png)
+![image](https://github.com/GZAY/Yichuguanjia2/blob/master/Picture/img11.png)
 
 ### 2.实现列表下拉刷新
 
