@@ -1,21 +1,17 @@
 package com.example.yichuguanjia2;
 
 
-import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
+
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.yichuguanjia2.BottomNavigatioinBar.CollocationFragment;
@@ -23,15 +19,7 @@ import com.example.yichuguanjia2.BottomNavigatioinBar.InspirationFragment;
 import com.example.yichuguanjia2.BottomNavigatioinBar.MineFragment;
 import com.example.yichuguanjia2.BottomNavigatioinBar.WardrobeFragment;
 import com.example.yichuguanjia2.base.BaseActivity;
-import com.example.yichuguanjia2.weather.HttpUtil;
-import com.example.yichuguanjia2.weather.Province;
 
-import java.io.IOException;
-import java.util.List;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private RadioGroup mRgBottomMenu;
@@ -48,6 +36,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             }
         });
+        //fragment天气信息
+
+    }
+
+    //Fragment启动方法：
+    FragmentManager fragmentManager;
+    FragmentTransaction transaction;
+    private void replaceFragment(Fragment fragment) {
+        // 1.获取FragmentManager，在活动中可以直接通过调用getFragmentManager()方法得到
+        fragmentManager =getSupportFragmentManager();
+        // 2.开启一个事务，通过调用beginTransaction()方法开启
+        transaction = fragmentManager.beginTransaction();
+        // 3.向容器内添加或替换碎片，一般使用replace()方法实现，需要传入容器的id和待添加的碎片实例
+        transaction.replace(R.id.fragment_container, fragment);  //fr_container不能为fragment布局，可使用线性布局相对布局等。
+        // 4.使用addToBackStack()方法，将事务添加到返回栈中，填入的是用于描述返回栈的一个名字
+        transaction.addToBackStack(null);
+        // 5.提交事物,调用commit()方法来完成
+        transaction.commit();
     }
     //Fragment,底部导航栏
     @Override
@@ -136,6 +142,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
+    }
+
+    private String data;
+    public void setData(String data){
+        this.data = data;
+    }
+    public String getData(){
+        return data;
     }
 
 }
