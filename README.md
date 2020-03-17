@@ -44,9 +44,10 @@
 
 ### 5.加载效果、网络请求，JSON数据获取与解析、使用开放接口
 
-> 在ViewPager中实现图片展示，在加载图片之前用到了加载效果，用的是之前培训的接口，用网格布局管理器实现多列图片展示。Json数据获取与解析在第一行代码中学习了Json的解析方式。由于之前在网络请求中解决个Bug花了好几天，又没有找到合适的接口所以并未使用新的接口。
+> 在ViewPager中实现图片展示，在加载图片之前用到了加载效果，用的是之前培训的接口，用网格布局管理器实现多列图片展示。Json数据获取与解析在第一行代码中学习了Json的解析方式。由于之前在网络请求中解决个Bug花了好几天，又没有找到合适的接口所以并未使用新的接口。但是后面在另一个fragment中使用了天气接口,通过获取位置信息获得当前天气情况，使用了网络请求，JSON数据获取与解析、使用开放接口。
 
 ![image](https://github.com/GZAY/Yichuguanjia2/blob/master/Picture/img9.png)
+![image](https://github.com/GZAY/Yichuguanjia2/blob/master/Picture/img13.png)
 
 ### 6.使用拍照、相册选择图片
 
