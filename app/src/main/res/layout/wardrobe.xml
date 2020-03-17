@@ -95,7 +95,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="15dp"
-                android:background="@drawable/mine_plan"/>
+                android:background="@drawable/w_common"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -129,7 +129,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="15dp"
-                android:background="@drawable/mine_plan"/>
+                android:background="@drawable/w_type"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="15dp"
-                android:background="@drawable/mine_plan"/>
+                android:background="@drawable/w_management"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -197,7 +197,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="15dp"
-                android:background="@drawable/mine_plan"/>
+                android:background="@drawable/w_season"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -231,7 +231,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="15dp"
-                android:background="@drawable/mine_plan"/>
+                android:background="@drawable/w_like"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

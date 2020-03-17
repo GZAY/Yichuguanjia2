@@ -147,7 +147,7 @@
                         android:layout_height="40dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="15dp"
-                        android:background="@drawable/mine_plan"/>
+                        android:background="@drawable/m_color"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -181,7 +181,7 @@
                         android:layout_height="40dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="15dp"
-                        android:background="@drawable/mine_plan"/>
+                        android:background="@drawable/m_plan"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -215,7 +215,7 @@
                         android:layout_height="40dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="15dp"
-                        android:background="@drawable/mine_plan"/>
+                        android:background="@drawable/m_children"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -249,7 +249,7 @@
                         android:layout_height="40dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="15dp"
-                        android:background="@drawable/mine_plan"/>
+                        android:background="@drawable/m_selection"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -283,7 +283,7 @@
                         android:layout_height="40dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="15dp"
-                        android:background="@drawable/mine_plan"/>
+                        android:background="@drawable/m_backup"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -317,7 +317,7 @@
                         android:layout_height="40dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="15dp"
-                        android:background="@drawable/mine_plan"/>
+                        android:background="@drawable/m_feedback"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -351,7 +351,7 @@
                         android:layout_height="40dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="15dp"
-                        android:background="@drawable/mine_plan"/>
+                        android:background="@drawable/m_about"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

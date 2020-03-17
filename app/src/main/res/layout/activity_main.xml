@@ -35,50 +35,21 @@
             android:drawableTop="@drawable/tab_record_selector"
             android:text="@string/navigation_collocation" />
 
-        <RelativeLayout
+        <FrameLayout
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_gravity="center">
-            <Button
-                android:id="@+id/button_composer_sleep"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:background="@drawable/icon_compass"
-                android:layout_centerInParent="true"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"/>
-            <Button
-                android:id="@+id/button_composer_thought"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:background="@drawable/icon_album"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"/>
-            <Button
-                android:id="@+id/button_composer_music"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:background="@drawable/icon_photo"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"/>
-
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/sign"
-                android:elevation="2dp"/>
+                android:src="@mipmap/sign" />
 
-            <Button
-                android:id="@+id/btn_cancel"
+            <ImageView
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:background="@mipmap/button_plus" />
-        </RelativeLayout>
+        </FrameLayout>
 
         <RadioButton
             android:id="@+id/title_inspiration"
@@ -92,6 +63,50 @@
             android:drawableTop="@drawable/tab_setting_selector"
             android:text="@string/navigation_mine" />
     </RadioGroup>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp">
+        <ImageView
+            android:id="@+id/button_web"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/icon_compass"
+            android:layout_centerInParent="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"/>
+        <ImageView
+            android:id="@+id/button_album"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/icon_album"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center" />
+        <ImageView
+            android:id="@+id/button_camera"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/icon_photo"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center" />
+        <ImageView
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:src="@mipmap/sign"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"/>
 
+        <ImageView
+            android:id="@+id/btn_cancel"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@mipmap/button_plus"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"/>
+    </RelativeLayout>
 
 </RelativeLayout>

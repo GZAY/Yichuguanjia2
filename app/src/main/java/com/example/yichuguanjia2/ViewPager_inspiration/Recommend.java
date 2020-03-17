@@ -2,9 +2,11 @@ package com.example.yichuguanjia2.ViewPager_inspiration;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -42,6 +44,13 @@ public class Recommend extends Fragment {
             "apikey=0df993c66c0c636e29ecbb5344252a4a" +
             "&start=0&count=250";
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //让推荐中的图片自适应
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,7 +65,7 @@ public class Recommend extends Fragment {
                 requestData();
             }
         });
-        GridLayoutManager manager = new GridLayoutManager (getContext(),3);
+        GridLayoutManager manager = new GridLayoutManager (getContext(),2);
         recyclerView.setLayoutManager(manager);
         progressBar.setVisibility(View.VISIBLE);
         messageText.setVisibility(View.VISIBLE);
