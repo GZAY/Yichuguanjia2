@@ -7,4 +7,33 @@
     android:background="@drawable/c_show">
     <include layout="@layout/activity_weather" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/down"
+            android:layout_width="111dp"
+            android:layout_height="210dp"
+            android:layout_below="@+id/coat"
+            android:layout_centerHorizontal="true"
+
+            android:background="@drawable/c_down" />
+
+        <ImageView
+            android:id="@+id/coat"
+            android:layout_width="176dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/c_coat" />
+
+        <ImageView
+            android:id="@+id/foot"
+            android:layout_width="88dp"
+            android:layout_height="57dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/c_foot"
+            android:layout_below="@+id/down"/>
+    </RelativeLayout>
 </LinearLayout>

@@ -1,87 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
+
     <LinearLayout
         android:id="@+id/degree_info"
-        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp">
+        android:layout_alignParentTop="true"
+
+        android:layout_marginEnd="-102dp"
+        android:layout_toStartOf="@id/comfort_text"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/degree_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="16C"
+            android:layout_marginTop="30dp"
+            android:text="16℃"
             android:textColor="@color/weather"
-            android:textSize="60sp" />
+            android:textSize="36sp" />
 
         <TextView
             android:id="@+id/weather_info_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
+            android:layout_gravity="center_horizontal"
             android:text="多云"
             android:textColor="@color/weather"
-            android:textSize="20sp"
-            android:layout_marginLeft="10dp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:layout_toEndOf="@id/degree_info"
-        android:layout_toRightOf="@id/degree_info">
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="105dp"
+        android:layout_marginLeft="105dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="10dp">
+
         <ImageView
             android:id="@+id/nav_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="45dp"
+            android:layout_height="18dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/location">
 
         </ImageView>
+
         <TextView
             android:id="@+id/title_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="7dp"
             android:layout_toEndOf="@id/nav_button"
+            android:layout_toRightOf="@id/nav_button"
             android:text="四川"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="2dp"
             android:textColor="@color/weather"
-            android:textSize="14sp"
-            android:layout_toRightOf="@id/nav_button" />
-
-        <TextView
-            android:id="@+id/comfort_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/nav_button"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="8dp"
-            android:textColor="@color/weather" />
+            android:textSize="10sp" />
     </RelativeLayout>
 
     <TextView
         android:id="@+id/title_update_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginRight="51dp"
         android:text="22:00"
         android:textColor="@color/weather"
-        android:textSize="16sp"/>
+        android:textSize="12sp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
         android:layout_toStartOf="@id/title_update_time"
-        android:layout_marginTop="5dp"
+        android:layout_toLeftOf="@id/title_update_time"
         android:text="上次更新时间: "
         android:textColor="@color/weather"
-        android:textSize="14sp"
-        android:layout_toLeftOf="@id/title_update_time" />
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/comfort_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginEnd="25dp"
+        android:text="舒适度"
+        android:textColor="@color/weather" />
 </RelativeLayout>

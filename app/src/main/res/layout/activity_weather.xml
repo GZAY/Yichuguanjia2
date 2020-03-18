@@ -23,6 +23,10 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/weather_show"/>
+                <ImageView
                     android:id="@+id/bing_pic_img"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

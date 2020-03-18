@@ -95,12 +95,12 @@ public class CollocationFragment extends Fragment {
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
-        String bingPic = prefs.getString("bing_pic", null);
+        /*String bingPic = prefs.getString("bing_pic", null);
         if (bingPic != null) {
             Glide.with(this).load(bingPic).into(bingPicImg);
         } else {
             loadBingPic();
-        }
+        }*/
         return mRootView;
     }
 
@@ -149,7 +149,7 @@ public class CollocationFragment extends Fragment {
                 });
             }
         });
-        loadBingPic();
+        //loadBingPic();
     }
 
     /**
