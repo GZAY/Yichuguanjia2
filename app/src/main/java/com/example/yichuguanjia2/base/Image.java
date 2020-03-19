@@ -4,7 +4,7 @@ public class Image {
     private String title; //标题
     private String imageUrl; //海报
 
-    public Image(String title, String imageUrl, String time, String average, String genres) {
+    public Image(String title, String imageUrl) {
         this.title = title;
         this.imageUrl = imageUrl;
     }

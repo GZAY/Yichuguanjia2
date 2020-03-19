@@ -13,13 +13,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.yichuguanjia2.R;
-import com.example.yichuguanjia2.adapter.ImageListAdapter;
+import com.example.yichuguanjia2.adapter.RecyclerViewAdapter;
 import com.example.yichuguanjia2.base.Image;
 
 import org.json.JSONArray;
@@ -40,9 +41,9 @@ public class Recommend extends Fragment {
     private TextView messageText;
     private List<Image> imageList = new ArrayList<>();
     private SwipeRefreshLayout swipeRefreshLayout;
-    private String path = "http://api.douban.com/v2/movie/top250?" +
-            "apikey=0df993c66c0c636e29ecbb5344252a4a" +
-            "&start=0&count=250";
+    private String path = "http://api01.6bqb.com/taobao/search?" +
+            "apikey=CE2208003CF5AD7252178CD3E291A7F6&keyword=%e6%98%a5%e5%ad%a3%e5%a5%b3%e8%a3%85" +
+            "&page=1&order=default";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class Recommend extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recommend_viewpager,container,false);
+
         recyclerView = view.findViewById(R.id.recycler_view1);
         progressBar = view.findViewById(R.id.fragment_progress);
         messageText = view.findViewById(R.id.fragment_message);
@@ -65,11 +67,21 @@ public class Recommend extends Fragment {
                 requestData();
             }
         });
-        GridLayoutManager manager = new GridLayoutManager (getContext(),2);
-        recyclerView.setLayoutManager(manager);
+
+
+        //GridLayoutManager manager = new GridLayoutManager (getContext(),2);
+        //recyclerView.setLayoutManager(manager);
+
+
+        //声明为瀑布流的布局，2列，垂直方向
+        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(manager); //recyclerView设置布局管理器
         progressBar.setVisibility(View.VISIBLE);
         messageText.setVisibility(View.VISIBLE);
         requestData();
+
+
+
         return view;
     }
 
@@ -100,22 +112,17 @@ public class Recommend extends Fragment {
     private void parseJson(final String responseData){
         try {
             JSONObject jsonObject = new JSONObject(responseData);
-            JSONArray jsonArray = jsonObject.getJSONArray("subjects");
+            JSONArray jsonArray = jsonObject.getJSONArray("data");
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject_i = jsonArray.getJSONObject(i);
+                String title = jsonObject_i.get("title").toString();
 
-                String title = jsonObject_i.get("title").toString();//将title提取出来
-                JSONArray genresArray = jsonObject_i.getJSONArray("genres");
-                String genres = "";
-                for (int j = 0; j < genresArray.length(); j++) {
-                    genres = genres + " " + genresArray.get(j).toString();//将genres提取出来
-                }
+                JSONArray imageUrlArray = jsonObject_i.getJSONArray("imageUrls");
+                String imageUrl = "http:";
+                imageUrl = imageUrl + imageUrlArray.get(0).toString();
 
-                String imageUrl = jsonObject_i.getJSONObject("images").getString("medium");
-                String time = jsonObject_i.getJSONArray("durations").getString(0);
-                String average = jsonObject_i.getJSONObject("rating").getString("average");
-                Log.e("image",title + genres + time + average + imageUrl);
-                Image image = new Image(title,imageUrl,time,average,genres);
+                Log.e("image",title + imageUrl);
+                Image image = new Image(title,imageUrl);
                 imageList.add(image);
             }
             getActivity().runOnUiThread(new Runnable() {
@@ -124,7 +131,8 @@ public class Recommend extends Fragment {
                     swipeRefreshLayout.setRefreshing(false);
                     progressBar.setVisibility(View.GONE);
                     messageText.setVisibility(View.GONE);
-                    ImageListAdapter adapter = new ImageListAdapter(imageList);
+                    RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(),imageList);
+                    recyclerView.setItemAnimator(new DefaultItemAnimator());
                     recyclerView.setAdapter(adapter);
                 }
             });
