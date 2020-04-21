@@ -3,6 +3,7 @@ package com.example.yichuguanjia2.weather.util;
 import android.nfc.Tag;
 import android.text.TextUtils;
 
+import com.example.yichuguanjia2.gson.cityId;
 import com.example.yichuguanjia2.weather.db.City;
 import com.example.yichuguanjia2.weather.db.County;
 import com.example.yichuguanjia2.weather.db.Province;
@@ -90,7 +91,7 @@ public class Utility {
     public static Weather handleWeatherResponse(String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
-            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather6");
 
             String weatherContent = jsonArray.getJSONObject(0).toString();
             weatherContent=JSONTokener(weatherContent);
@@ -107,6 +108,18 @@ public class Utility {
             str_json = str_json.substring(1);
         }
         return str_json;
+    }
+
+    public static cityId handleCityIdResponse(String response) {
+        try {
+            JSONObject jsonObject=new JSONObject(response);
+            JSONArray jsonArray=jsonObject.getJSONArray("HeWeather6");
+            return new Gson().fromJson(jsonArray.getJSONObject(0).toString(),cityId.class);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

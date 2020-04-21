@@ -1,14 +1,18 @@
 package com.example.yichuguanjia2.BottomNavigatioinBar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,11 +20,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.yichuguanjia2.spl_clothes.w_clothes1;
+import com.example.yichuguanjia2.spl_clothes.w_clothes2;
+import com.example.yichuguanjia2.spl_clothes.w_clothes3;
+import com.example.yichuguanjia2.Activity.w_type;
 import com.example.yichuguanjia2.R;
-import com.example.yichuguanjia2.base.BaseFragment;
+import com.example.yichuguanjia2.spl_clothes.w_clothes4;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,46 +37,96 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class WardrobeFragment extends BaseFragment {
-    Toolbar toolbar;
+public class WardrobeFragment extends Fragment {
+    private Toolbar toolbar;
+    private View myView;
+    private String TAG = "Toolbar";
+
+    /**
+     * Toolbar menu键显示
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate: ");
         setHasOptionsMenu(true);//加上这句话，menu才会显示出来
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView: ");
+        myView = inflater.inflate(R.layout.wardrobe, container, false);
+        toolbar = myView.findViewById(R.id.toolbar1);
+        LinearLayout w_common_button = myView.findViewById(R.id.w_common_button);
+        w_common_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), w_clothes1.class);
+                startActivity(intent);
+            }
+        });
+        LinearLayout w_type_button = myView.findViewById(R.id.w_type_button);
+        w_type_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), w_type.class);
+                startActivity(intent);
+            }
+        });
+        LinearLayout w_management_button = myView.findViewById(R.id.w_management_button);
+        w_management_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), w_clothes2.class);
+                startActivity(intent);
+            }
+        });
+        LinearLayout w_season_button = myView.findViewById(R.id.w_season_button);
+        w_season_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), w_clothes3.class);
+                startActivity(intent);
+            }
+        });
+        LinearLayout w_like_button = myView.findViewById(R.id.w_like_button);
+        w_like_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), w_clothes4.class);
+                startActivity(intent);
+            }
+        });
+        setView();
+        return myView;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Log.d(TAG, "onViewCreated: ");
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Log.d(TAG, "onActivityCreated: ");
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);//去掉标题
         toolbar.inflateMenu(R.menu.toolbar);
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        toolbar = findViewById(R.id.toolbar1); //最关键一步在onViewCreated中初始化，而不是在onCreatedView中
-    }
-
-    @Override
-    protected int attachLayoutRes() {
-        return 0;
-    }
-
-    @Override
-    protected void initViews() {
-    }
-
-    //Toolbar
-    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        Log.d(TAG, "onCreateOptionsMenu: ");
         inflater.inflate(R.menu.toolbar, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Log.d(TAG, "onOptionsItemSelected: ");
         switch (item.getItemId()){
             case R.id.test_menu1:
                 Toast.makeText(getActivity(), "backup", Toast.LENGTH_SHORT).show();
@@ -80,7 +139,11 @@ public class WardrobeFragment extends BaseFragment {
         return super.onOptionsItemSelected(item);
     }
 
-    //轮播图
+
+
+    /**
+     * 轮播图
+     */
     private View mView;
     private ViewPager mViewPaper;
     private List<ImageView> images;
@@ -101,17 +164,8 @@ public class WardrobeFragment extends BaseFragment {
     private TextView title;
     private ViewPagerAdapter adapter;
     private ScheduledExecutorService scheduledExecutorService;
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mRootView = inflater.inflate(R.layout.wardrobe, container, false);
-        setView();
-        //在onCreateView中inflater只能返回一个，所以多个布局管理器要和成一个返回，否则没有返回的将无法显示
-        return mRootView;
-    }
     private void setView(){
-        mViewPaper = mRootView.findViewById(R.id.vp);
+        mViewPaper = myView.findViewById(R.id.vp);
 
         //显示的图片
         images = new ArrayList<ImageView>();
@@ -122,13 +176,13 @@ public class WardrobeFragment extends BaseFragment {
         }
         //显示的小点
         dots = new ArrayList<View>();
-        dots.add(mRootView.findViewById(R.id.dot_0));
-        dots.add(mRootView.findViewById(R.id.dot_1));
-        dots.add(mRootView.findViewById(R.id.dot_2));
-        dots.add(mRootView.findViewById(R.id.dot_3));
-        dots.add(mRootView.findViewById(R.id.dot_4));
+        dots.add(myView.findViewById(R.id.dot_0));
+        dots.add(myView.findViewById(R.id.dot_1));
+        dots.add(myView.findViewById(R.id.dot_2));
+        dots.add(myView.findViewById(R.id.dot_3));
+        dots.add(myView.findViewById(R.id.dot_4));
 
-        title = mRootView.findViewById(R.id.title);
+        title = myView.findViewById(R.id.title);
         title.setText(titles[0]);
 
         adapter = new ViewPagerAdapter();
@@ -192,6 +246,7 @@ public class WardrobeFragment extends BaseFragment {
     @Override
     public void onStart() {
         super.onStart();
+        Log.d(TAG, "onStart: ");
         scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
         scheduledExecutorService.scheduleWithFixedDelay(
                 new ViewPageTask(),
@@ -199,7 +254,6 @@ public class WardrobeFragment extends BaseFragment {
                 2,
                 TimeUnit.SECONDS);
     }
-
 
     /**
      * 图片轮播任务
@@ -223,6 +277,7 @@ public class WardrobeFragment extends BaseFragment {
             mViewPaper.setCurrentItem(currentItem);
         }
     };
+
     @Override
     public void onStop() {
         super.onStop();

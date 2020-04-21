@@ -86,6 +86,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <LinearLayout
+            android:id="@+id/w_common_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
@@ -120,6 +121,7 @@
             android:layout_height="1dip"
             android:background="#D1D0D0" />
         <LinearLayout
+            android:id="@+id/w_type_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
@@ -154,6 +156,7 @@
             android:layout_height="1dip"
             android:background="#D1D0D0" />
         <LinearLayout
+            android:id="@+id/w_management_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
@@ -188,6 +191,7 @@
             android:layout_height="1dip"
             android:background="#D1D0D0" />
         <LinearLayout
+            android:id="@+id/w_season_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
@@ -222,6 +226,7 @@
             android:layout_height="1dip"
             android:background="#D1D0D0" />
         <LinearLayout
+            android:id="@+id/w_like_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"

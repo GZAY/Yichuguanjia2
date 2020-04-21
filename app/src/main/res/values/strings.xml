@@ -15,5 +15,7 @@
 
     <string name="spinner_prompt">choose province</string>
     <string name="url_list_province">http://guolin.tech/api/china</string>
+    <string name="cancel">取消</string>
+    <string name="tpye">类型</string>
 
 </resources>

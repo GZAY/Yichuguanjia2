@@ -4,36 +4,84 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/c_show">
+    android:background="@drawable/c_show"
+    xmlns:fab="http://schemas.android.com/apk/res-auto">
     <include layout="@layout/activity_weather" />
-
-    <RelativeLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+            <FrameLayout
+        android:layout_width="176dp"
+        android:layout_height="500dp"
+        android:layout_gravity="center_horizontal">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <ImageView
+                android:id="@+id/down"
+                android:layout_width="111dp"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/coat"
+                android:layout_centerHorizontal="true"
+                android:scaleType="centerCrop"
+                android:background="@drawable/c_down" />
 
-        <ImageView
-            android:id="@+id/down"
-            android:layout_width="111dp"
-            android:layout_height="210dp"
-            android:layout_below="@+id/coat"
-            android:layout_centerHorizontal="true"
+            <ImageView
+                android:id="@+id/coat"
+                android:layout_width="176dp"
+                android:layout_height="200dp"
+                android:layout_centerHorizontal="true"
+                android:scaleType="centerCrop"
+                android:background="@drawable/c_coat" />
+        </RelativeLayout>
+    </FrameLayout>
 
-            android:background="@drawable/c_down" />
+            <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/map_actions_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right|end"
+            android:layout_marginBottom="66dp"
+            android:layout_marginRight="16dp"
+            fab:fab_addButtonColorNormal="@color/fab_color"
+            fab:fab_addButtonColorPressed="@color/blue_normal"
+            fab:fab_addButtonPlusIconColor="@color/white"
+            fab:fab_labelStyle="@style/menu_labels_style">
 
-        <ImageView
-            android:id="@+id/coat"
-            android:layout_width="176dp"
-            android:layout_height="200dp"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/c_coat" />
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/change_map_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_addButtonColorNormal="@color/fab_color"
+                fab:fab_addButtonColorPressed="@color/blue_normal"
+                fab:fab_size="mini"
+                fab:fab_colorNormal="@color/blue_normal"
+                fab:fab_colorPressed="@color/blue_pressed"
+                fab:fab_title="自由移动"/>
 
-        <ImageView
-            android:id="@+id/foot"
-            android:layout_width="88dp"
-            android:layout_height="57dp"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/c_foot"
-            android:layout_below="@+id/down"/>
-    </RelativeLayout>
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/change_map_model"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_addButtonColorNormal="@color/fab_color"
+                fab:fab_addButtonColorPressed="@color/blue_normal"
+                fab:fab_size="mini"
+                fab:fab_colorNormal="@color/blue_normal"
+                fab:fab_colorPressed="@color/blue_pressed"
+                fab:fab_title="保存搭配"/>
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/position_panorama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_addButtonColorNormal="@color/fab_color"
+                fab:fab_addButtonColorPressed="@color/blue_normal"
+                fab:fab_size="mini"
+                fab:fab_colorNormal="@color/colorAccentLight"
+                fab:fab_colorPressed="@color/colorAccent"
+                fab:fab_title="清空搭配"/>
+
+            </com.getbase.floatingactionbutton.FloatingActionsMenu>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </LinearLayout>

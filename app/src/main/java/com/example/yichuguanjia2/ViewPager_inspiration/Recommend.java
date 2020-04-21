@@ -17,11 +17,15 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.yichuguanjia2.R;
 import com.example.yichuguanjia2.adapter.RecyclerViewAdapter;
 import com.example.yichuguanjia2.base.Image;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,48 +44,63 @@ public class Recommend extends Fragment {
     private ProgressBar progressBar;
     private TextView messageText;
     private List<Image> imageList = new ArrayList<>();
-    private SwipeRefreshLayout swipeRefreshLayout;
+    private SmartRefreshLayout smartRefreshLayout;
+    private RecyclerViewAdapter adapter;
+    private int page = 1;
+    private ClassicsFooter footer;
     private String path = "http://api01.6bqb.com/taobao/search?" +
             "apikey=CE2208003CF5AD7252178CD3E291A7F6&keyword=%e6%98%a5%e5%ad%a3%e5%a5%b3%e8%a3%85" +
-            "&page=1&order=default";
+            "&page="+page+"&order=default";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //让推荐中的图片自适应
-
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.recommend_viewpager,container,false);
-
+        final View view = inflater.inflate(R.layout.recommend_viewpager,container,false);
         recyclerView = view.findViewById(R.id.recycler_view1);
         progressBar = view.findViewById(R.id.fragment_progress);
         messageText = view.findViewById(R.id.fragment_message);
-        swipeRefreshLayout = view.findViewById(R.id.mswipeRefreshLayout);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        smartRefreshLayout = view.findViewById(R.id.refreshLayout);
+
+
+        smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {//下拉刷新
             @Override
-            public void onRefresh() {
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                imageList.clear();
+                page = 1;
                 requestData();
+                adapter.notifyDataSetChanged();
+                refreshLayout.finishRefresh(true);//刷新完成
+            }
+        });
+
+        smartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {//上拉加载
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                Log.d("test", "onLoadMore: ");
+                page ++ ;
+                path = "http://api01.6bqb.com/taobao/search?" +
+                        "apikey=CE2208003CF5AD7252178CD3E291A7F6&keyword=%e6%98%a5%e5%ad%a3%e5%a5%b3%e8%a3%85" +
+                        "&page="+page+"&order=default";
+                requestData();
+                adapter.notifyDataSetChanged();//添加或者修改数据，更新ListView
+                refreshLayout.finishLoadMore(true);//加载完成
+                footer = view.findViewById(R.id.footer);
+                footer.setFinishDuration(500);//时间参数，将参数设为0，就没用白框了
             }
         });
 
 
-        //GridLayoutManager manager = new GridLayoutManager (getContext(),2);
-        //recyclerView.setLayoutManager(manager);
-
-
-        //声明为瀑布流的布局，2列，垂直方向
+        //瀑布流布局，2列，垂直方向
         StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager); //recyclerView设置布局管理器
         progressBar.setVisibility(View.VISIBLE);
         messageText.setVisibility(View.VISIBLE);
         requestData();
-
-
-
         return view;
     }
 
@@ -107,31 +126,33 @@ public class Recommend extends Fragment {
             }
         }).start();
     }
-
     //解析Json数据
     private void parseJson(final String responseData){
         try {
-            JSONObject jsonObject = new JSONObject(responseData);
-            JSONArray jsonArray = jsonObject.getJSONArray("data");
+            JSONObject jsonObject = new JSONObject(responseData);//将JSON数据转化成JSON对象
+            JSONArray jsonArray = jsonObject.getJSONArray("data");//对象数组
             for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject_i = jsonArray.getJSONObject(i);
-                String title = jsonObject_i.get("title").toString();
 
+                JSONObject jsonObject_i = jsonArray.getJSONObject(i);
+                //普通的键值对
+                String title = jsonObject_i.get("title").toString();
+                //对象数组
                 JSONArray imageUrlArray = jsonObject_i.getJSONArray("imageUrls");
                 String imageUrl = "http:";
                 imageUrl = imageUrl + imageUrlArray.get(0).toString();
 
-                Log.e("image",title + imageUrl);
+                //Log.e("image",title + imageUrl);
                 Image image = new Image(title,imageUrl);
                 imageList.add(image);
             }
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    swipeRefreshLayout.setRefreshing(false);
+                    smartRefreshLayout.finishRefresh();
                     progressBar.setVisibility(View.GONE);
                     messageText.setVisibility(View.GONE);
-                    RecyclerViewAdapter adapter = new RecyclerViewAdapter(getContext(),imageList);
+
+                    adapter = new RecyclerViewAdapter(getContext(),imageList);
                     recyclerView.setItemAnimator(new DefaultItemAnimator());
                     recyclerView.setAdapter(adapter);
                 }

@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.yichuguanjia2">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <application
         android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
@@ -13,7 +27,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:networkSecurityConfig="@xml/network_security_config"
+        android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="OHcPqFBNvEHriEPAdlX0TYGPtDDrjKpe"/>
+        <service android:name="com.baidu.location.f" android:enabled="true"
+            android:process=":remote">
+        </service>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,8 +42,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".base.BaseActivity"></activity>
-        <activity android:name=".BottomNavigatioinBar.Button_menu"></activity>
+        <activity android:name=".base.BaseActivity"/>
+        <activity
+            android:name=".Activity.w_type"
+            android:launchMode="singleTask"/>
+        <activity
+            android:name=".Activity.w_clothes"/>
+        <activity
+            android:name=".spl_clothes.w_clothes1"/>
+        <activity
+            android:name=".spl_clothes.w_clothes2"/>
+        <activity
+            android:name=".spl_clothes.w_clothes3"/>
+        <activity
+            android:name=".spl_clothes.w_clothes4"/>
+        <activity
+            android:name="com.example.yichuguanjia2.MultiplePicture.ImgFileListActivity"
+            android:launchMode="singleTask"
+            android:label="@string/app_name" />
+        <activity
+            android:launchMode="singleTask"
+            android:name="com.example.yichuguanjia2.MultiplePicture.ImgsActivity"
+            android:label="@string/app_name" >
+        </activity>
         <meta-data android:name="design_width" android:value="768">
         </meta-data>
         <meta-data android:name="design_height" android:value="1280">
@@ -31,6 +73,16 @@
             android:name=".weather.service.AutoUpdateService"
             android:enabled="true"
             android:exported="true" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.yichuguanjia2.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>
