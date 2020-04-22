@@ -19,7 +19,7 @@ public class ImgsAdapter extends BaseAdapter {
 
 	Context context;
 	List<String> data;
-	public Bitmap bitmaps[];
+	public Bitmap[] bitmaps;
 	Util util;
 	OnItemClickClass onItemClickClass;
 	private int index=-1;
@@ -60,8 +60,8 @@ public class ImgsAdapter extends BaseAdapter {
 			index=arg0;
 			arg1=LayoutInflater.from(context).inflate(R.layout.imgsitem, null);
 			holder=new Holder();
-			holder.imageView=(ImageView) arg1.findViewById(R.id.imageView1);
-			holder.checkBox=(CheckBox) arg1.findViewById(R.id.checkBox1);
+			holder.imageView= arg1.findViewById(R.id.imageView1);
+			holder.checkBox= arg1.findViewById(R.id.checkBox1);
 			arg1.setTag(holder);
 			holderlist.add(arg1);
 		}else {
@@ -97,7 +97,7 @@ public class ImgsAdapter extends BaseAdapter {
 	}
 
 	public interface OnItemClickClass{
-		public void OnItemClick(View v, int Position, CheckBox checkBox);
+		void OnItemClick(View v, int Position, CheckBox checkBox);
 	}
 	
 	class OnPhotoClick implements OnClickListener{

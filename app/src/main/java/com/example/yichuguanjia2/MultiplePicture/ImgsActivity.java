@@ -41,14 +41,14 @@ public class ImgsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.photogrally);
 
-		imgGridView=(GridView) findViewById(R.id.gridView1);
+		imgGridView= findViewById(R.id.gridView1);
 		bundle= getIntent().getExtras();
 		fileTraversal=bundle.getParcelable("data");
 		imgsAdapter=new ImgsAdapter(this, fileTraversal.filecontent,onItemClickClass);
 		imgGridView.setAdapter(imgsAdapter);
-		select_layout=(LinearLayout) findViewById(R.id.selected_image_layout);
-		relativeLayout2=(RelativeLayout) findViewById(R.id.relativeLayout2);
-		choise_button=(Button) findViewById(R.id.button3);
+		select_layout= findViewById(R.id.selected_image_layout);
+		relativeLayout2= findViewById(R.id.relativeLayout2);
+		choise_button= findViewById(R.id.button3);
 		hashImage=new HashMap<Integer, ImageView>();
 		filelist=new ArrayList<String>();
 //		imgGridView.setOnItemClickListener(this);

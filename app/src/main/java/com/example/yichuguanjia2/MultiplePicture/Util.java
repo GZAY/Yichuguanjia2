@@ -119,7 +119,7 @@ public class Util {
 	}
 
 	public String getfileinfo(String data){
-		String filename[]= data.split("/");
+		String[] filename = data.split("/");
 		if (filename!=null) {
 			return filename[filename.length-2];
 		}

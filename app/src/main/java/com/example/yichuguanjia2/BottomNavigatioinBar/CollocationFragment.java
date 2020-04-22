@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
@@ -34,6 +35,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -60,6 +62,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 import static android.app.Activity.RESULT_OK;
+import static org.litepal.LitePalBase.TAG;
 
 
 public class CollocationFragment extends Fragment {
@@ -79,11 +82,11 @@ public class CollocationFragment extends Fragment {
     private ImageView image;
     private ImageView imageCoat;
     private ImageView imageDown;
-
-    public LocationClient mLocationClient;
     public double LongitudeId = 116.4052887;//经度
     public double LatitudeId = 39.90498734;//纬度
-    public String CityID = "CN101010100"; //根据经纬度得出的城市ID
+
+    public LocationClient mLocationClient;
+    private MyLocationListener myListener = new MyLocationListener();
     @Override
     public void onAttach(Context context){
         super.onAttach(context);
@@ -106,6 +109,7 @@ public class CollocationFragment extends Fragment {
         swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
         drawerLayout = mRootView.findViewById(R.id.drawer_layout);
         navButton = mRootView.findViewById(R.id.nav_button);
+        requestLocation();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         String weatherString = prefs.getString("weather", null);
         if (weatherString != null) {
@@ -137,7 +141,6 @@ public class CollocationFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 requestLocation();
-                requestWeather(mWeatherId);
             }
         });
         /*String bingPic = prefs.getString("bing_pic", null);
@@ -171,10 +174,11 @@ public class CollocationFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        定位监听器，一旦调用requestLocation()函数，就会触发MyLocationListener()
-        mLocationClient=new LocationClient(getActivity().getApplicationContext());
-        mLocationClient.registerLocationListener(new MyLocationListener());
-
+        //定位监听器，一旦调用requestLocation()函数，就会触发MyLocationListener()
+        mLocationClient = new LocationClient(getActivity().getApplicationContext());
+        //声明LocationClient类
+        mLocationClient.registerLocationListener(myListener);
+        //注册监听函数
         List<String> permissionList=new ArrayList<>();//用于把3个权限的判断生成list传递出去判断
 //        权限判断
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED)
@@ -198,16 +202,6 @@ public class CollocationFragment extends Fragment {
         {
             requestLocation();
         }
-
-        //        点击定位按钮监听器
-        /*startLBS.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //所有权限都开启之后，进行定位
-                requestLocation();
-                CityID_show.setText(CityID);
-            }
-        });*/
     }
 
     /**
@@ -222,6 +216,7 @@ public class CollocationFragment extends Fragment {
             public void onResponse(Call call, Response response) throws IOException {
                 final String responseText = response.body().string();
                 final Weather weather = Utility.handleWeatherResponse(responseText);
+                Log.d(TAG, "收到信息"+responseText);
                 mActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -363,6 +358,7 @@ public class CollocationFragment extends Fragment {
         locModeBtn.setIcon(R.drawable.c_move);
         locModeBtn.setTitle("清空搭配");
         locModeBtn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View view) {
                 imageCoat.setBackground(null);
@@ -435,8 +431,10 @@ public class CollocationFragment extends Fragment {
     private void initLocation()
     {
         LocationClientOption option=new LocationClientOption();
-        //option.setScanSpan(5000);//每隔5s刷新一下
-        option.setLocationMode(LocationClientOption.LocationMode.Device_Sensors);//开启GPS定位
+        option.setIsNeedAltitude(true);
+        option.setOpenGps(true);
+        option.setOpenAutoNotifyMode();
+        option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);//开启GPS定位
         mLocationClient.setLocOption(option);
     }
 
@@ -470,19 +468,23 @@ public class CollocationFragment extends Fragment {
     }
 
     //    定位结果信息赋值
-    public class MyLocationListener implements BDLocationListener {
+    public class MyLocationListener extends BDAbstractLocationListener {
         @Override
         public void onReceiveLocation(BDLocation location)
         {
             LongitudeId=location.getLongitude();//经度获取
             LatitudeId=location.getLatitude();//纬度获取
+
+            Log.d(TAG, "经度"+LongitudeId);
+            Log.d(TAG, "纬度"+LatitudeId);
+            int errorCode = location.getLocType();
+            Log.d(TAG, errorCode+"");
             //requestCityInfo(LongitudeId,LatitudeId);//根据经纬度，请求服务器
         }
-
     }
 
     //    用经纬度向服务器请求获取城市json
-    public void requestCityInfo(double longitude,double latitude)
+    /*public void requestCityInfo(double longitude,double latitude)
     {
         String cityUrl="https://search.heweather.net/find?location="+longitude+","+latitude+"&key=8e669fb35db1436496ad76e9aec7ba60";
         System.out.println("请求链接："+cityUrl);
@@ -491,13 +493,11 @@ public class CollocationFragment extends Fragment {
             public void onResponse(Call call, Response response) throws IOException {
                 final String responseCityInfoText=response.body().string();
                 System.out.println("返回的信息："+responseCityInfoText);
-//                把返回的数据交到Utility进行Gson解析
+                //把返回的数据交到Utility进行Gson解析
                 cityId CITYID = Utility.handleCityIdResponse(responseCityInfoText);
                 String N = "{\"HeWeather6\":[{\"status\":\"unknown location\"}]}";
                 if(!responseCityInfoText.equals(N)){
-                    /*
-                    根据当前经纬度得出的城市的ID，可利用该ID直接向和风天气API请求该城市的天气信息
-                     */
+                    //根据当前经纬度得出的城市的ID，可利用该ID直接向和风天气API请求该城市的天气信息
                     CityID=CITYID.basicsList.get(0).cityID;
                     System.out.println("最后的一步，ID："+CityID);
                     mLocationClient.stop();
@@ -516,5 +516,5 @@ public class CollocationFragment extends Fragment {
             }
         });
 
-    }
+    }*/
 }

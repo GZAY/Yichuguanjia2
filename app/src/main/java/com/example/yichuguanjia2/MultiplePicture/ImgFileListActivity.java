@@ -27,17 +27,17 @@ ImgFileListActivity extends Activity implements OnItemClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.imgfilelist);
-		listView=(ListView) findViewById(R.id.listView1);
+		listView= findViewById(R.id.listView1);
 		util=new Util(this);
 		locallist=util.LocalImgFileList();
 		List<HashMap<String, String>> listdata=new ArrayList<HashMap<String,String>>();
-		Bitmap bitmap[] = null;
+		Bitmap[] bitmap = null;
 		if (locallist!=null) {
 			bitmap=new Bitmap[locallist.size()];
 			for (int i = 0; i < locallist.size(); i++) {
 				HashMap<String, String> map=new HashMap<String, String>();
 				map.put("filecount", locallist.get(i).filecontent.size()+"张");
-				map.put("imgpath", locallist.get(i).filecontent.get(0)==null?null:(locallist.get(i).filecontent.get(0)));
+				map.put("imgpath", (locallist.get(i).filecontent.get(0)));
 				map.put("filename", locallist.get(i).filename);
 				listdata.add(map);
 			}

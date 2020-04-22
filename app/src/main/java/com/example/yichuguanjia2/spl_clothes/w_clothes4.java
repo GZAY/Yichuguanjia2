@@ -127,7 +127,7 @@ public class w_clothes4 extends AppCompatActivity {
         //锁定屏幕
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         //获取控件对象
-        gridView1 = (GridView) findViewById(R.id.gridView1);
+        gridView1 = findViewById(R.id.gridView1);
 
         /*
        /*
@@ -162,7 +162,7 @@ public class w_clothes4 extends AppCompatActivity {
             public boolean setViewValue(View view, Object data,
                                         String textRepresentation) {
                 if (view instanceof ImageView && data instanceof Bitmap) {
-                    ImageView img = (ImageView)findViewById(R.id.imageView1);
+                    ImageView img = findViewById(R.id.imageView1);
                     img.setImageBitmap((Bitmap) data);
                     return true;
                 }
