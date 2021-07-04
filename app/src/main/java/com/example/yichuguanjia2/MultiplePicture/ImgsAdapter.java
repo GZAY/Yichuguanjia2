@@ -60,7 +60,7 @@ public class ImgsAdapter extends BaseAdapter {
 			index=arg0;
 			arg1=LayoutInflater.from(context).inflate(R.layout.imgsitem, null);
 			holder=new Holder();
-			holder.imageView= arg1.findViewById(R.id.imageView1);
+			holder.imageView= arg1.findViewById(R.id.imageView1_null);
 			holder.checkBox= arg1.findViewById(R.id.checkBox1);
 			arg1.setTag(holder);
 			holderlist.add(arg1);

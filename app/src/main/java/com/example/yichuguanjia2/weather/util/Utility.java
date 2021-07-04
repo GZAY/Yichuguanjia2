@@ -1,19 +1,16 @@
 package com.example.yichuguanjia2.weather.util;
 
-import android.nfc.Tag;
 import android.text.TextUtils;
-
-import com.example.yichuguanjia2.gson.cityId;
 import com.example.yichuguanjia2.weather.db.City;
 import com.example.yichuguanjia2.weather.db.County;
 import com.example.yichuguanjia2.weather.db.Province;
 import com.example.yichuguanjia2.weather.gson.Weather;
+import com.example.yichuguanjia2.weather.gson.cityId;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.litepal.util.LogUtil;
 
 public class Utility {
 

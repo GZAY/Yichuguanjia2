@@ -58,8 +58,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class w_clothes1 extends AppCompatActivity {
-    private static int[] images = {R.mipmap.ic_launcher,R.mipmap.ic_header,R.mipmap.sign,R.mipmap.wardrobe};
-    GridView gv;
     ImageView imageView;
     private GridView gridView1;                   //网格显示缩略图
     private final int IMAGE_OPEN = 1;        //打开图片标记
@@ -69,8 +67,6 @@ public class w_clothes1 extends AppCompatActivity {
     ArrayList<String> list;
     ArrayList<String> listfile=new ArrayList<String>();
     private static int saveCode = 0;
-    private SharedPreferences pref;
-    private SharedPreferences.Editor editor;
     int path_id = 1;
 
 
@@ -78,6 +74,7 @@ public class w_clothes1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.w_clothes_show);
+
         ImageView back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,9 +82,6 @@ public class w_clothes1 extends AppCompatActivity {
                 finish();
             }
         });
-
-
-
         ImageView add = findViewById(R.id.clothes_add);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,17 +112,12 @@ public class w_clothes1 extends AppCompatActivity {
         });
 
         list = new ArrayList<>();
-        //
-        //                防止键盘挡住输入框
-        //                 不希望遮挡设置activity属性 android:windowSoftInputMode="adjustPan"
-        //                 希望动态调整高度 android:windowSoftInputMode="adjustResize"
         getWindow().setSoftInputMode(WindowManager.LayoutParams.
                 SOFT_INPUT_ADJUST_PAN);
         //锁定屏幕
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         //获取控件对象
         gridView1 = findViewById(R.id.gridView1);
-
         /*
        /*
          * 载入默认图片添加图片加号
@@ -493,6 +482,7 @@ public class w_clothes1 extends AppCompatActivity {
         cursor.moveToFirst();
         return cursor.getString(column_index);
     }
+
     //数据临时保存
     /*@Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {

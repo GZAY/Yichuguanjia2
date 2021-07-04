@@ -35,14 +35,6 @@
         android:layout_gravity="center_vertical"
         android:gravity="end">
 
-        <TextView
-            android:id="@+id/item_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="0"
-            android:textSize="20sp" />
-
         <ImageView
             android:id="@+id/item_back"
             android:layout_width="30dp"

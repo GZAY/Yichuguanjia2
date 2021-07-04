@@ -1,5 +1,11 @@
 package com.example.yichuguanjia2.ViewPager_inspiration;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
@@ -7,11 +13,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -31,7 +42,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,24 +62,19 @@ public class Recommend extends Fragment {
     private RecyclerViewAdapter adapter;
     private int page = 1;
     private ClassicsFooter footer;
-    private String path = "http://api01.6bqb.com/taobao/search?" +
-            "apikey=CE2208003CF5AD7252178CD3E291A7F6&keyword=%e6%98%a5%e5%ad%a3%e5%a5%b3%e8%a3%85" +
-            "&page="+page+"&order=default";
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    private String path = "https://api03.6bqb.com/taobao/search?" +
+            "apikey=CE2208003CF5AD7252178CD3E291A7F6&keyword=%E9%9D%92%E5%B0%91%E5%B9%B4%E6%9C%8D%E8%A3%85" +
+            "&page="+page+"&order=default&tab=all";
+    private View view;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.recommend_viewpager,container,false);
+        view = inflater.inflate(R.layout.recommend_viewpager,container,false);
         recyclerView = view.findViewById(R.id.recycler_view1);
         progressBar = view.findViewById(R.id.fragment_progress);
         messageText = view.findViewById(R.id.fragment_message);
         smartRefreshLayout = view.findViewById(R.id.refreshLayout);
-
 
         smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {//下拉刷新
             @Override
@@ -83,9 +92,9 @@ public class Recommend extends Fragment {
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 Log.d("test", "onLoadMore: ");
                 page ++ ;
-                path = "http://api01.6bqb.com/taobao/search?" +
-                        "apikey=CE2208003CF5AD7252178CD3E291A7F6&keyword=%e6%98%a5%e5%ad%a3%e5%a5%b3%e8%a3%85" +
-                        "&page="+page+"&order=default";
+                path = "https://api03.6bqb.com/taobao/search?" +
+                        "apikey=CE2208003CF5AD7252178CD3E291A7F6&keyword=%E9%9D%92%E5%B0%91%E5%B9%B4%E6%9C%8D%E8%A3%85" +
+                        "&page="+page+"&order=default&tab=all";
                 requestData();
                 adapter.notifyDataSetChanged();//添加或者修改数据，更新ListView
                 refreshLayout.finishLoadMore(true);//加载完成
@@ -138,11 +147,11 @@ public class Recommend extends Fragment {
                 String title = jsonObject_i.get("title").toString();
                 //对象数组
                 JSONArray imageUrlArray = jsonObject_i.getJSONArray("imageUrls");
-                String imageUrl = "http:";
+                String imageUrl = "";
                 imageUrl = imageUrl + imageUrlArray.get(0).toString();
 
                 //Log.e("image",title + imageUrl);
-                Image image = new Image(title,imageUrl);
+                Image image = new Image(title,"https://" + imageUrl);
                 imageList.add(image);
             }
             getActivity().runOnUiThread(new Runnable() {
@@ -155,11 +164,19 @@ public class Recommend extends Fragment {
                     adapter = new RecyclerViewAdapter(getContext(),imageList);
                     recyclerView.setItemAnimator(new DefaultItemAnimator());
                     recyclerView.setAdapter(adapter);
+                    // 设置数据后就要给RecyclerView设置点击事件
+                    adapter.setOnItemClickListener(new RecyclerViewAdapter.ItemClickListener() {
+                        @Override
+                        public void onItemClick(int position) {
+                            // 这里本来是跳转页面 ，我们就在这里直接让其弹toast来演示
+                            Toast.makeText(getContext() , imageList.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             });
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
 
+    }
 }

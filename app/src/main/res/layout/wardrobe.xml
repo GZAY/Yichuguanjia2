@@ -11,7 +11,7 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="300dip" >
+            android:layout_height="230dip">
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/vp"
@@ -24,20 +24,20 @@
                 android:layout_gravity="bottom"
                 android:background="#33000000"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="图片标题"
+                    android:text=""
                     android:textColor="@android:color/white" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dip"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <View
                         android:id="@+id/dot_0"
@@ -45,7 +45,7 @@
                         android:layout_height="5dip"
                         android:layout_marginLeft="2dip"
                         android:layout_marginRight="2dip"
-                        android:background="@drawable/dot_yes"/>
+                        android:background="@drawable/dot_yes" />
 
                     <View
                         android:id="@+id/dot_1"
@@ -53,28 +53,31 @@
                         android:layout_height="5dip"
                         android:layout_marginLeft="2dip"
                         android:layout_marginRight="2dip"
-                        android:background="@drawable/dot_no"/>
+                        android:background="@drawable/dot_no" />
+
                     <View
                         android:id="@+id/dot_2"
                         android:layout_width="5dip"
                         android:layout_height="5dip"
                         android:layout_marginLeft="2dip"
                         android:layout_marginRight="2dip"
-                        android:background="@drawable/dot_no"/>
+                        android:background="@drawable/dot_no" />
+
                     <View
                         android:id="@+id/dot_3"
                         android:layout_width="5dip"
                         android:layout_height="5dip"
                         android:layout_marginLeft="2dip"
                         android:layout_marginRight="2dip"
-                        android:background="@drawable/dot_no"/>
+                        android:background="@drawable/dot_no" />
+
                     <View
                         android:id="@+id/dot_4"
                         android:layout_width="5dip"
                         android:layout_height="5dip"
                         android:layout_marginLeft="2dip"
                         android:layout_marginRight="2dip"
-                        android:background="@drawable/dot_no"/>
+                        android:background="@drawable/dot_no" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -85,6 +88,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
             android:id="@+id/w_common_button"
             android:layout_width="match_parent"
@@ -92,8 +96,8 @@
             android:orientation="horizontal"
             android:background="#FFFFFF">
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="15dp"
                 android:background="@drawable/w_common"/>
@@ -103,15 +107,52 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="5dp"
                 android:text="常用穿搭"
-                android:textSize="20sp"/>
+                android:textColor="#000"
+                android:textSize="18sp"/>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:gravity="right" >
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/back_right" />
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="#D1D0D0" />
+        <LinearLayout
+            android:id="@+id/w_all"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="#FFFFFF">
+            <ImageView
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/w_all"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="5dp"
+                android:text="所有服装"
+                android:textColor="#000"
+                android:textSize="18sp"/>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right" >
+                <ImageView
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/back_right" />
             </LinearLayout>
@@ -127,8 +168,8 @@
             android:orientation="horizontal"
             android:background="#FFFFFF">
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="15dp"
                 android:background="@drawable/w_type"/>
@@ -138,15 +179,16 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="5dp"
                 android:text="按类型分类"
-                android:textSize="20sp"/>
+                android:textColor="#000"
+                android:textSize="18sp"/>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:gravity="right" >
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/back_right" />
             </LinearLayout>
@@ -162,26 +204,28 @@
             android:orientation="horizontal"
             android:background="#FFFFFF">
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="15dp"
                 android:background="@drawable/w_management"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="5dp"
-                android:text="按管理分类"
-                android:textSize="20sp"/>
+                android:text="按场景分类"
+                android:textColor="#000"
+                android:textSize="18sp" />
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:gravity="right" >
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/back_right" />
             </LinearLayout>
@@ -197,8 +241,8 @@
             android:orientation="horizontal"
             android:background="#FFFFFF">
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="15dp"
                 android:background="@drawable/w_season"/>
@@ -208,15 +252,16 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="5dp"
                 android:text="按季节分类"
-                android:textSize="20sp"/>
+                android:textColor="#000"
+                android:textSize="18sp"/>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:gravity="right" >
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/back_right" />
             </LinearLayout>
@@ -225,36 +270,5 @@
             android:layout_width="match_parent"
             android:layout_height="1dip"
             android:background="#D1D0D0" />
-        <LinearLayout
-            android:id="@+id/w_like_button"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:background="#FFFFFF">
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="15dp"
-                android:background="@drawable/w_like"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="5dp"
-                android:text="猜你喜欢"
-                android:textSize="20sp"/>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="right" >
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@drawable/back_right" />
-            </LinearLayout>
-        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

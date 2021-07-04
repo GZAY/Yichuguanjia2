@@ -4,7 +4,7 @@
     android:layout_height="wrap_content" >
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/imageView1_null"
         android:layout_margin="4dp"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
@@ -16,8 +16,8 @@
         android:id="@+id/checkBox1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/imageView1"
-        android:layout_alignTop="@+id/imageView1" 
+        android:layout_alignRight="@+id/imageView1_null"
+        android:layout_alignTop="@+id/imageView1_null"
         android:checked="false"
         android:focusable="false"
         android:clickable="false"

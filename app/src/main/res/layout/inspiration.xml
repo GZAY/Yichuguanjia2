@@ -26,16 +26,39 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="灵感"
-                        android:textSize="20sp"
-                        android:textColor="#000"
-                        android:fontFamily="sans-serif-black"/>
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="right"
+                            android:gravity="end|center_vertical"
+                            android:fontFamily="sans-serif-black"
+                            android:text="灵感"
+                            android:paddingEnd="45dp"
+                            android:textColor="#FFFFFF"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/inspiration_search"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="end"
+                            android:paddingEnd="10dp"
+                            android:src="@drawable/img_search"/>
+                    </LinearLayout>
                 </LinearLayout>
+
             </androidx.appcompat.widget.Toolbar>
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/inspiration_tab_layout"
@@ -43,10 +66,10 @@
                 android:layout_height="wrap_content"
                 app:tabIndicatorColor="#FF5252"
                 app:tabSelectedTextColor="#FF5252"
-                app:tabTextColor="#000000">
-
-            </com.google.android.material.tabs.TabLayout>
-
+                app:tabTextColor="#000000"
+                app:tabMaxWidth="0dp"
+                app:tabGravity="fill"
+                app:tabMode="fixed"/>
         </com.google.android.material.appbar.AppBarLayout>
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/inspiration_view_pager"

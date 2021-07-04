@@ -32,14 +32,11 @@ public class ItemAdapter extends ArrayAdapter<listItem> {
         View view = LayoutInflater.from(getContext()).inflate(resourceID,null);
         ImageView imageView = view.findViewById(R.id.item_image);
         TextView textView = view.findViewById(R.id.item_text);
-        TextView num = view.findViewById(R.id.item_num);
         ImageView back = view.findViewById(R.id.item_back);
-
 
         //引入Browser对象的属性值
         imageView.setImageResource(listItem.getImageView());
         textView.setText(listItem.getTextView());
-        num.setText(listItem.getNum());
         back.setImageResource(listItem.getBack());
         return view;
     }

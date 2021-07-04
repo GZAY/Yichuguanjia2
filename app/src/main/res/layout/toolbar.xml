@@ -8,46 +8,31 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/search_main"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/img_search"
+                android:layout_alignParentLeft="true" />
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/title_main"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="7dp"
                 android:text="我的衣橱"
-                android:textSize="20sp"
-                android:textColor="#000"
-                android:layout_marginRight="10dp" />
-
-            <LinearLayout
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/button_edge">
-                <EditText
-                    android:id="@+id/search"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="4"
-                    android:singleLine="true"
-                    android:textSize="16sp"
-                    android:textColor="#000"
-                    android:layout_marginLeft="5dp" />
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="5dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/search"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="3dp"/>
-            </LinearLayout>
-        </LinearLayout>
-
+                android:fontFamily="sans-serif-black"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:textSize="20sp" />
+            <ImageView
+                android:id="@+id/addClothes"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/add_white"
+                android:layout_toRightOf="@+id/title_main"
+                android:layout_marginLeft="-50dp"/>
+        </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 </LinearLayout>

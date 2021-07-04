@@ -6,13 +6,11 @@ import android.widget.TextView;
 public class listItem {
     int imageView;
     String textView;
-    String num;
     int back;
 
-    public listItem(int imageView, String textView,String num,int back) {
+    public listItem(int imageView, String textView,int back) {
         this.imageView = imageView;
         this.textView = textView;
-        this.num = num;
         this.back = back;
     }
     public int getImageView() {
@@ -21,10 +19,6 @@ public class listItem {
 
     public String getTextView() {
         return textView;
-    }
-
-    public String getNum() {
-        return num;
     }
 
     public int getBack() {

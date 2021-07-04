@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -19,7 +18,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,21 +28,15 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
-import com.bumptech.glide.Glide;
-import com.cocosw.bottomsheet.BottomSheet;
-import com.example.yichuguanjia2.MainActivity;
 import com.example.yichuguanjia2.R;
-import com.example.yichuguanjia2.gson.cityId;
 import com.example.yichuguanjia2.weather.gson.Weather;
 import com.example.yichuguanjia2.weather.service.AutoUpdateService;
 import com.example.yichuguanjia2.weather.util.HttpUtil;
@@ -157,6 +149,7 @@ public class CollocationFragment extends Fragment {
             public void onClick(View v) {
                 image = (ImageView) v;
                 openAlbum();
+                imageCoat.setBackground(null);
             }
         });
         imageDown = mRootView.findViewById(R.id.down);
@@ -165,6 +158,7 @@ public class CollocationFragment extends Fragment {
             public void onClick(View v) {
                 image = (ImageView) v;
                 openAlbum();
+                imageDown.setBackground(null);
             }
         });
 
@@ -331,23 +325,23 @@ public class CollocationFragment extends Fragment {
     }
 
     private FloatingActionsMenu mFloatingActionsMenu;
-    private FloatingActionButton mapTypeBtn, locModeBtn, panoramaBtn;
+    private FloatingActionButton moveTypeBtn, locModeBtn, locSaveBtn;
     private void initFloatButton(View view) {
         mFloatingActionsMenu = view.findViewById(R.id.map_actions_menu);
-        mapTypeBtn = view.findViewById(R.id.change_map_type);
-        mapTypeBtn.setIcon(R.drawable.c_move);
-        mapTypeBtn.setTitle("自由移动");
-        mapTypeBtn.setOnClickListener(new View.OnClickListener() {
+        moveTypeBtn = view.findViewById(R.id.change_map_type);
+        moveTypeBtn.setIcon(R.drawable.c_move);
+        moveTypeBtn.setTitle("自由移动");
+        moveTypeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mFloatingActionsMenu.toggle();
             }
         });
 
-        locModeBtn = view.findViewById(R.id.change_map_model);
-        locModeBtn.setIcon(R.drawable.c_move);
-        locModeBtn.setTitle("保存搭配");
-        locModeBtn.setOnClickListener(new View.OnClickListener() {
+        locSaveBtn = view.findViewById(R.id.change_map_model);
+        locSaveBtn.setIcon(R.drawable.c_move);
+        locSaveBtn.setTitle("保存搭配");
+        locSaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mFloatingActionsMenu.toggle();

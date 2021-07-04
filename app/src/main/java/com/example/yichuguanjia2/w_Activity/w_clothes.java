@@ -1,4 +1,4 @@
-package com.example.yichuguanjia2.Activity;
+package com.example.yichuguanjia2.w_Activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -12,7 +12,6 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -48,10 +47,6 @@ import com.cocosw.bottomsheet.BottomSheet;
 import com.example.yichuguanjia2.MultiplePicture.ImgFileListActivity;
 import com.example.yichuguanjia2.R;
 import com.example.yichuguanjia2.sql.MyDatabaseHelper;
-import com.example.yichuguanjia2.sql.imagePath1;
-
-import org.litepal.crud.DataSupport;
-import org.litepal.tablemanager.Connector;
 
 import java.io.File;
 import java.io.FileDescriptor;
@@ -60,11 +55,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 
 public class w_clothes extends AppCompatActivity {
-    private static int[] images = {R.mipmap.ic_launcher,R.mipmap.ic_header,R.mipmap.sign,R.mipmap.wardrobe};
     ImageView imageView;
     private GridView gridView1;                   //网格显示缩略图
     private final int IMAGE_OPEN = 1;        //打开图片标记
@@ -76,12 +69,12 @@ public class w_clothes extends AppCompatActivity {
     private static int saveCode = 0;
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
-    int path_id = 1;
     String tableName = "ImagePath";
     int version = 1;
     private static SQLiteDatabase db;
     static int number;
     static int position;
+    static int flag = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,7 +86,6 @@ public class w_clothes extends AppCompatActivity {
                 finish();
             }
         });
-
         ImageView add = findViewById(R.id.clothes_add);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,10 +116,6 @@ public class w_clothes extends AppCompatActivity {
         });
 
         list = new ArrayList<>();
-        //
-        //                防止键盘挡住输入框
-        //                 不希望遮挡设置activity属性 android:windowSoftInputMode="adjustPan"
-        //                 希望动态调整高度 android:windowSoftInputMode="adjustResize"
         getWindow().setSoftInputMode(WindowManager.LayoutParams.
                 SOFT_INPUT_ADJUST_PAN);
         //锁定屏幕
@@ -199,8 +187,10 @@ public class w_clothes extends AppCompatActivity {
         });
         Intent intent =getIntent();
         version = intent.getIntExtra("version",1);
-        MyDatabaseHelper dbHelper = new MyDatabaseHelper(this,"ImagePathX.db",null,3);
+        number = intent.getIntExtra("numbers",0);
+        MyDatabaseHelper dbHelper = new MyDatabaseHelper(this,"ImagePathX.db",null,4);
         db = dbHelper.getWritableDatabase();
+
         Cursor cursor = db.query(tableName+version,null,null,null,null,null,null);
         if(cursor.moveToFirst()){
             do{
@@ -404,6 +394,7 @@ public class w_clothes extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (listfile.size()!=0 || mCameraUri!=null || !TextUtils.isEmpty(pathImage) || saveCode == 9) {
+            flag = 1;
             Bitmap bm;
             ContentValues values = new ContentValues();
             if(resumeCode == 3){
@@ -495,6 +486,7 @@ public class w_clothes extends AppCompatActivity {
                 db.execSQL("ALTER TABLE tempt RENAME TO "+tableName+version);
                 db.delete(tableName+version,"id=?",new String[]{pos});
                 number--;
+                flag = 1;
                 imageItem.remove(position);
                 simpleAdapter.notifyDataSetChanged();
             }
@@ -647,12 +639,15 @@ public class w_clothes extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode==KeyEvent.KEYCODE_BACK){
-            Intent intent = new Intent(this, w_type.class);
-            Bundle bundle = new Bundle();
-            bundle.putInt("position", position);
-            bundle.putInt("number", number);
-            intent.putExtras(bundle);
-            setResult(RESULT_OK,intent);
+            if(flag == 1){
+                flag = 0;
+                Intent intent = new Intent(this, w_type.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("position", position);
+                bundle.putInt("number"+position, number);
+                intent.putExtras(bundle);
+                setResult(RESULT_OK,intent);
+            }
             finish();
         }
         return true;

@@ -18,4 +18,70 @@
 
     <color name="none_color">#00000000</color>
     <color name="bule_overlay">#660D92DD</color>
+
+    <!-- 新版登录模块-->
+    <color name="login_line_color">#dededf</color>
+    <color name="login_input_active">#31b968</color>
+    <color name="login_other_color">#cacaca</color>
+    <color name="account_input_bg_color">#3CB81717</color>
+    <color name="account_lock_bg">#ff43815c</color>
+    <color name="account_lock_font_color">#FFFFFF</color>
+    <color name="account_input_color">#c9c9c9</color>
+    <color name="account_pressed_true">#14b94d</color>
+    <color name="bg_press">#ebebeb</color>\
+    <color name="bg_press_material">#d4d4d4</color>
+    <!-- 下拉刷新时，颜色值 -->
+    <color name="swiperefresh_color4">#ffaa66cc</color>
+    <!--  created by  fei -->
+    <color name="text_secondary_color">#9d9d9d</color>
+    <color name="transparent">#00000000</color>
+    <color name="black_alpha_128">#80000000</color>
+    <color name="list_item_background_pressed">#FCFCFC</color>
+
+    <color name="gray0">#464646</color>
+    <color name="gray1">#7e7e7e</color>
+    <color name="gray2">#969696</color>
+    <color name="gray3">#c8969696</color>
+    <color name="gray4">#F5F5F5</color>
+    <color name="gray5">#EBEBEB</color>
+    <color name="gray6">#FBFBFB</color>
+    <color name="gray7">#999999</color>
+    <color name="gray8">#D9D9D9</color>
+    <color name="gray9">#DBDFE0</color>
+
+    <color name="red0">#ff0000</color>
+    <color name="red1">#D84E43</color>
+    <color name="red2">#F08B88</color>
+    <color name="red3">#FFFAF5</color>
+    <color name="red4">#823026</color>
+    <color name="red5">#FA6F5F</color>
+    <color name="red6">#D54A47</color>
+    <color name="red7">#E64340</color>
+    <color name="red8">#FF3E3E</color>
+
+    <color name="green0">#45C01A</color>
+    <color name="green1">#45C01A</color>
+    <color name="green2">#A3DEA3</color>
+    <color name="green3">#1AAD19</color>
+
+    <color name="blue0">#576B95</color>
+
+    <color name="black0">#000000</color>
+    <color name="black1">#99000000</color>
+
+    <color name="yellow0">#FFC51B</color>
+    <color name="yellow1">#E5A134</color>
+
+
+    <!--遮盖层颜色-->
+    <color name="mask">#32000000</color>
+
+    <!--快速索引bar颜色-->
+    <color name="side_bar">#919091</color>
+    <color name="side_bar_pressed">#BFBFBF</color>
+
+    <!--    图标的颜色-->
+    <color name="menu_icon">#FF000000</color>
+
+    <color name="color_b7b8bd">#b7b8bd</color>
 </resources>

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp">
+    android:padding="10dp"
+    tools:ignore="RtlCompat">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,15 +31,20 @@
                         android:layout_height="80dp"
                         android:layout_centerVertical="true"
                         android:src="@drawable/image_head"
-                        android:layout_marginStart="30dp"/>
+                        android:layout_marginStart="30dp"
+                        tools:ignore="RtlCompat" />
                     <TextView
+                        android:id="@+id/user_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="您的昵称"
+                        android:textColor="#000"
                         android:layout_centerInParent="true"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:layout_marginStart="10dp"
-                        android:layout_toEndOf="@+id/header_image"/>
+                        android:layout_toEndOf="@+id/header_image"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/header_image" />
                 </RelativeLayout>
                 <LinearLayout
                     android:orientation="horizontal"
@@ -137,32 +144,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <LinearLayout
+                    android:id="@+id/myInfo"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:orientation="horizontal"
                     android:background="#FFFFFF">
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="15dp"
-                        android:background="@drawable/m_color"/>
+                        android:background="@drawable/info"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="5dp"
-                        android:text="按颜色分类"
-                        android:textSize="20sp"/>
+                        android:text="个人信息"
+                        android:textColor="#000"
+                        android:textSize="18sp"/>
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:gravity="right" >
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginEnd="10dp"
                             android:background="@drawable/back_right" />
                     </LinearLayout>
@@ -172,31 +182,34 @@
                     android:layout_height="1dip"
                     android:background="#D1D0D0" />
                 <LinearLayout
+                    android:id="@+id/clothes_plan"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:orientation="horizontal"
                     android:background="#FFFFFF">
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="15dp"
-                        android:background="@drawable/m_plan"/>
+                        android:background="@drawable/m_plan"
+                        tools:ignore="RtlCompat" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="5dp"
                         android:text="穿衣计划"
-                        android:textSize="20sp"/>
+                        android:textColor="#000"
+                        android:textSize="18sp"/>
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:gravity="right" >
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginEnd="10dp"
                             android:background="@drawable/back_right" />
                     </LinearLayout>
@@ -206,13 +219,14 @@
                     android:layout_height="1dip"
                     android:background="#D1D0D0" />
                 <LinearLayout
+                    android:id="@+id/child_management"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:orientation="horizontal"
                     android:background="#FFFFFF">
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="15dp"
                         android:background="@drawable/m_children"/>
@@ -222,15 +236,16 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="5dp"
                         android:text="儿童服装管理"
-                        android:textSize="20sp"/>
+                        android:textColor="#000"
+                        android:textSize="18sp"/>
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:gravity="right" >
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginEnd="10dp"
                             android:background="@drawable/back_right" />
                     </LinearLayout>
@@ -240,13 +255,14 @@
                     android:layout_height="1dip"
                     android:background="#D1D0D0" />
                 <LinearLayout
+                    android:id="@+id/select_set"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:orientation="horizontal"
                     android:background="#FFFFFF">
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="15dp"
                         android:background="@drawable/m_selection"/>
@@ -256,15 +272,16 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="5dp"
                         android:text="选项设置"
-                        android:textSize="20sp"/>
+                        android:textColor="#000"
+                        android:textSize="18sp"/>
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:gravity="right" >
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginEnd="10dp"
                             android:background="@drawable/back_right" />
                     </LinearLayout>
@@ -274,13 +291,14 @@
                     android:layout_height="1dip"
                     android:background="#D1D0D0" />
                 <LinearLayout
+                    android:id="@+id/data_backup"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:orientation="horizontal"
                     android:background="#FFFFFF">
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="15dp"
                         android:background="@drawable/m_backup"/>
@@ -290,15 +308,16 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="5dp"
                         android:text="数据备份"
-                        android:textSize="20sp"/>
+                        android:textColor="#000"
+                        android:textSize="18sp"/>
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:gravity="right" >
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginEnd="10dp"
                             android:background="@drawable/back_right" />
                     </LinearLayout>
@@ -308,13 +327,14 @@
                     android:layout_height="1dip"
                     android:background="#D1D0D0" />
                 <LinearLayout
+                    android:id="@+id/feedback"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:orientation="horizontal"
                     android:background="#FFFFFF">
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="15dp"
                         android:background="@drawable/m_feedback"/>
@@ -324,15 +344,16 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="5dp"
                         android:text="问题反馈"
-                        android:textSize="20sp"/>
+                        android:textColor="#000"
+                        android:textSize="18sp"/>
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:gravity="right" >
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginEnd="10dp"
                             android:background="@drawable/back_right" />
                     </LinearLayout>
@@ -342,31 +363,33 @@
                     android:layout_height="1dip"
                     android:background="#D1D0D0" />
                 <LinearLayout
+                    android:id="@+id/logout"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:orientation="horizontal"
                     android:background="#FFFFFF">
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="15dp"
-                        android:background="@drawable/m_about"/>
+                        android:background="@drawable/exit"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="5dp"
-                        android:text="关于我们"
-                        android:textSize="20sp"/>
+                        android:text="退出登录"
+                        android:textColor="#000"
+                        android:textSize="18sp"/>
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:gravity="right" >
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginEnd="10dp"
                             android:background="@drawable/back_right" />
                     </LinearLayout>
